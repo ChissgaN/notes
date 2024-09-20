@@ -54,12 +54,44 @@ void agregarNota() {
 }
 
 void editarNota() {
-  print('Función para editar nota.');
+  mostrarNotas();
+  if (notas.isEmpty) return;
+
+  print('Escribe el número de la nota que deseas editar:');
+  String? input = stdin.readLineSync();
+  int? index = int.tryParse(input ?? '');
+  
+  if (index != null && index > 0 && index <= notas.length) {
+    print('Escribe la nueva nota:');
+    String? nuevaNota = stdin.readLineSync();
+    
+    if (nuevaNota != null && nuevaNota.isNotEmpty) {
+      notas[index - 1] = nuevaNota;
+      print('Nota actualizada exitosamente.');
+    } else {
+      print('Nota vacía, no se actualizó.');
+    }
+  } else {
+    print('Número de nota no válido.');
+  }
 }
 
 void eliminarNota() {
-  print('Función para eliminar nota.');
+  mostrarNotas();
+  if (notas.isEmpty) return;
+
+  print('Escribe el número de la nota que deseas eliminar:');
+  String? input = stdin.readLineSync();
+  int? index = int.tryParse(input ?? '');
+  
+  if (index != null && index > 0 && index <= notas.length) {
+    notas.removeAt(index - 1);
+    print('Nota eliminada exitosamente.');
+  } else {
+    print('Número de nota no válido.');
+  }
 }
+
 
 void mostrarNotas() {
   if (notas.isEmpty) {
