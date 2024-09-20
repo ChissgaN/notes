@@ -1,9 +1,12 @@
-import 'package:notes/notes.dart' as notes;
-import 'dart:io';
+import 'dart:io'; // Para manejar la entrada/salida de la consola
+
+// Lista global para almacenar las notas
+List<String> notas = [];
 
 void main() {
   print('--- Gestor de Notas ---');
 
+  // Bucle principal del programa para mostrar el menú
   while (true) {
     print('\nElige una opción:');
     print('1: Agregar una nota');
@@ -12,13 +15,15 @@ void main() {
     print('4: Mostrar todas las notas');
     print('5: Salir');
 
+    // Leer la opción del usuario
     String? input = stdin.readLineSync();
 
+    // Evaluar la opción y ejecutar la acción correspondiente
     switch (input) {
-      case "1":
+      case '1':
         agregarNota();
         break;
-        case '2':
+      case '2':
         editarNota();
         break;
       case '3':
@@ -36,8 +41,16 @@ void main() {
   }
 }
 
+// Función para agregar una nota
 void agregarNota() {
-  print('Función para agregar nota.');
+  print('Escribe la nota:');
+  String? nuevaNota = stdin.readLineSync(); // Leer la entrada del usuario
+  if (nuevaNota != null && nuevaNota.isNotEmpty) {
+    notas.add(nuevaNota); // Agregar la nota a la lista
+    print('Nota agregada exitosamente.');
+  } else {
+    print('Nota vacía, no se agregó.');
+  }
 }
 
 void editarNota() {
@@ -49,5 +62,12 @@ void eliminarNota() {
 }
 
 void mostrarNotas() {
-  print('Función para mostrar notas.');
+  if (notas.isEmpty) {
+    print('No hay notas para mostrar.');
+  } else {
+    print("--- Tus Notas ---");
+    for (int i = 0; i < notas.length; i++) {
+      print('${i + 1}: ${notas[i]}');
+    }
+  }
 }
