@@ -1,4 +1,4 @@
-import 'dart:io'; // Para manejar la entrada/salida de la consola
+import 'dart:io';
 
 // Lista global para almacenar las notas
 List<String> notas = [];
@@ -34,7 +34,7 @@ void main() {
         break;
       case '5':
         print('¡Hasta luego!');
-        exit(0); // Termina el programa
+        exit(0);
       default:
         print('Opción no válida, intenta de nuevo.');
     }
@@ -44,9 +44,9 @@ void main() {
 // Función para agregar una nota
 void agregarNota() {
   print('Escribe la nota:');
-  String? nuevaNota = stdin.readLineSync(); // Leer la entrada del usuario
+  String? nuevaNota = stdin.readLineSync();
   if (nuevaNota != null && nuevaNota.isNotEmpty) {
-    notas.add(nuevaNota); // Agregar la nota a la lista
+    notas.add(nuevaNota);
     print('Nota agregada exitosamente.');
   } else {
     print('Nota vacía, no se agregó.');
